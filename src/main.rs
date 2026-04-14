@@ -1,5 +1,5 @@
 use anyhow::{Result, anyhow};
-use chrono::Local;
+use chrono::{Local, TimeZone};
 use futures::stream;
 use influxdb2::Client as InfluxClient;
 use influxdb2::api::write::TimestampPrecision;
@@ -100,8 +100,14 @@ async fn main() -> Result<()> {
             let Some(naive_dt) = entry.date.and_hms_opt(hour, minute, 0) else {
                 continue;
             };
+            // Interpret hour/minute as local time, then convert to UTC.
             // Multiply by 1e9: write_with_precision below sends nanoseconds.
-            let ts = naive_dt.and_utc().timestamp() * 1_000_000_000;
+            let ts = Local
+                .from_local_datetime(&naive_dt)
+                .single()
+                .map(|dt| dt.timestamp())
+                .unwrap_or_else(|| naive_dt.and_utc().timestamp())
+                * 1_000_000_000;
 
             let mut builder = DataPoint::builder("food_entry")
                 .timestamp(ts)
