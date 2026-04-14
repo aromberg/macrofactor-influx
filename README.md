@@ -21,7 +21,7 @@ on a schedule inside Docker via [supercronic](https://github.com/aptible/supercr
 ## Setup
 
 ```sh
-git clone <this-repo>
+git clone https://github.com/aromberg/macrofactor-influx
 cd macrofactor-influx
 cp .env.example .env
 # Fill in credentials (see Configuration below)
