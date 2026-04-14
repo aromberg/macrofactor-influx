@@ -79,7 +79,8 @@ async fn main() -> Result<()> {
 
         for entry in &entries {
             if entry.deleted == Some(true) {
-                continue;
+                // it looks like "deleted" does not mean deleted, but rather "entered via AI" --> Do not skip
+                // continue;
             }
 
             // Track IDs in the update window for staleness detection.
