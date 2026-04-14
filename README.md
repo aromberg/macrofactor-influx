@@ -25,7 +25,7 @@ git clone https://github.com/aromberg/macrofactor-influx
 cd macrofactor-influx
 cp .env.example .env
 # Fill in credentials (see Configuration below)
-docker run --rm --env-file .env macrofactor-influx
+docker run --rm --env-file .env ghcr.io/aromberg/macrofactor-influx
 ```
 
 ## Configuration
