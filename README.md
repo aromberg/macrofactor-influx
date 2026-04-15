@@ -1,6 +1,6 @@
 # macrofactor-influx
 
-Pulls nutrition data from MacroFactor and writes it to InfluxDB v2 on a daily schedule.
+Pulls nutrition data from MacroFactor and writes it to InfluxDB v2 on an hourly schedule.
 
 ## What it does
 
@@ -37,7 +37,7 @@ docker run --rm --env-file .env ghcr.io/aromberg/macrofactor-influx
 | `MACROFACTOR_REFRESH_TOKEN` | — | Firebase refresh token (highest priority; overrides config file) |
 | `INFLUX_URL` | — | InfluxDB base URL |
 | `INFLUX_ORG` | — | InfluxDB organisation name |
-| `INFLUX_TOKEN` | — | InfluxDB all-access token |
+| `INFLUX_TOKEN` | — | InfluxDB access token |
 | `INFLUX_BUCKET` | `macrofactor` | InfluxDB bucket to write into |
 | `INGEST_DAYS` | `2` | How many days back to fetch and write |
 | `UPDATE_DAYS` | `1` | How many recent days to check for deleted entries |
